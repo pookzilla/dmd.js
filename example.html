@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>DMD test</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+  Examples<p/>
+  <canvas width="640" height="140" id="testCanvas" ></canvas>
+  <pre style="width: 640;word-wrap:break-word;white-space: pre-wrap" id="code"></pre>
+  <hr/>
+  <canvas width="640" height="140" id="testCanvasText"></canvas>
+  <pre style="width: 640;word-wrap:break-word;white-space: pre-wrap" id="codeText"></pre>
+  </div>
+  <script src="lib/dmd.js"></script>
+  <script>
+  var js = "var canvas = document.getElementById('testCanvas');\n" +
+  "var dmd = new DMD(canvas);\n" +
+  "\n" + 
+  "dmd.clear();\n" +
+  "for (var i = 0; i < 50; i++) {\n" +
+   "    dmd.set(i, i, 'rgb(255,255,255)');\n" + 
+  "}\n" +
+  "dmd.fill(1,2,2,6,'rgb(255,0,0)');\n" +
+  "dmd.rect(20,10,6,6,'rgb(0,255,255)');\n" +
+  "dmd.set(20,0,'rgb(255,255,0)');\n" +
+  "dmd.set(21,0,'rgb(255,255,0)');\n" +
+  "dmd.set(22,0,'rgb(255,255,0)');\n" +
+  "dmd.set(23,0,'rgb(255,255,0)');\n" +
+  "dmd.set(24,0,'rgb(255,255,0)');\n" +
+  "dmd.set(19,1,'rgb(255,255,0)');\n" +
+  "dmd.set(25,1,'rgb(255,255,0)');\n" +
+  "dmd.set(19,2,'rgb(255,255,0)');\n" +
+  "dmd.set(25,2,'rgb(255,255,0)');\n" + 
+  "dmd.set(19,3,'rgb(255,255,0)');\n" +
+  "dmd.set(25,3,'rgb(255,255,0)');\n" + 
+  "dmd.set(19,4,'rgb(255,255,0)');\n" +
+  "dmd.set(25,4,'rgb(255,255,0)');\n" + 
+  "dmd.set(19,5,'rgb(255,255,0)');\n" +
+  "dmd.set(25,5,'rgb(255,255,0)');\n" +
+  "dmd.set(20,6,'rgb(255,255,0)');\n" +
+  "dmd.set(21,6,'rgb(255,255,0)');\n" +
+  "dmd.set(22,6,'rgb(255,255,0)');\n" +
+  "dmd.set(23,6,'rgb(255,255,0)');\n" +
+  "dmd.set(24,6,'rgb(255,255,0)');\n" +
+  "dmd.set(21,2,'rgb(255,255,0)');\n" +
+  "dmd.set(23,2,'rgb(255,255,0)');\n" +
+  "dmd.set(21,4,'rgb(255,255,0)');\n" +
+  "dmd.set(22,4,'rgb(255,255,0)');\n" +
+  "dmd.set(23,4,'rgb(255,255,0)');\n" +
+   "var X = [];\n" +
+   "X.push([1,0,0,0,1]);\n" +
+   "X.push([0,1,0,1,0]);\n" +
+   "X.push([0,0,1,0,0]);\n" +
+   "X.push([0,1,0,1,0]);\n" +
+   "X.push([1,0,0,0,1]);\n" +
+  "dmd.draw(6,0,X,{color:'rgb(255,0,255)', fill:true});\n" +
+  "dmd.draw(9,1,X,{color:'rgb(0,255,0)', fill:false});\n" +  
+  "var z = true;\n" + 
+  "function blink() {z ? dmd.set(2, 1, 'rgb(128,128,0)'): dmd.set(2,1); z = !z;}\n" + 
+  "window.setInterval(blink, 333);\n" +
+  ""
+  ;
+  eval(js); 
+  var code = document.getElementById('code');
+  code.innerHTML = js;
+  </script>  
+  <script>
+  var js = "var canvas = document.getElementById('testCanvasText');\n" +
+  "var dmdText = new DMD(canvas);\n" +
+  "\n" + 
+  "dmdText.clear();\n" +
+   "var A = [];\n" +
+   "A.push([0,1,1,1,0]);\n" +
+   "A.push([1,0,0,0,1]);\n" +
+   "A.push([1,0,0,0,1]);\n" +
+   "A.push([1,1,1,1,1]);\n" +
+   "A.push([1,0,0,0,1]);\n" +
+   "A.push([1,0,0,0,1]);\n" +
+   "A.push([1,0,0,0,1]);\n" +
+   "var B = [];\n" +
+   "B.push( [1,1,1,1,0] );\n" +
+   "B.push( [1,0,0,0,1] );\n" +
+   "B.push( [1,0,0,0,1] );\n" +
+   "B.push( [1,1,1,1,0] );\n" +
+   "B.push( [1,0,0,0,1] );\n" +
+   "B.push( [1,0,0,0,1] );\n" +
+   "B.push( [1,1,1,1,0] );\n" +
+  "var text = new DMDTextPrinter(dmdText);\n" +
+  "var i = dmdText.dot_width;" +
+  "window.setInterval(function() {\n" +
+  "\dmdText.clear();\n" + 
+  "\ttext.print(i--,0,'ABABAAAAAAAA', {color: 'rgb(0,255,128)', font: {'A': A, 'B': B}, fill:false});\n" +  
+	"}, 150);" +
+  ""
+  ;
+  eval(js); 
+  var code = document.getElementById('codeText');
+  code.innerHTML = js;
+  </script>
+</body>
+</html>
